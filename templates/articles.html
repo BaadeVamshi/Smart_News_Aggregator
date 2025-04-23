@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ newspaper_name }} Articles</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0056b3;
+        }
+
+        .container {
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        .article {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .article h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .article p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .summary {
+            background-color: #f0f0f5;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            font-style: italic;
+            font-size: 15px;
+            color: #444;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+            .article h2 {
+                font-size: 24px;
+            }
+            .article p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Articles from {{ newspaper_name }}</h1>
+        {% for article in articles %}
+            <div class="article">
+                <h2>{{ article.title }}</h2>
+                {% if article.image %}
+                    <img src="{{ article.image }}" alt="Article Image">
+                {% endif %}
+                <p>{{ article.text }}</p>
+                <h4>Summary</h4>
+                <p class="summary">{{ article.summary }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <footer>
+        <p>&copy; {{ current_year }} {{ newspaper_name }}. All rights reserved.</p>
+    </footer>
+</body>
+</html>

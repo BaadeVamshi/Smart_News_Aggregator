@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News Portal</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 100px;
+        }
+        .card {
+            width: 300px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px #ccc;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .read-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .read-btn:hover {
+            background-color: #0056b3;
+        }
+        .common{
+            display:flex;
+            justify-content:center;
+            margin-top:2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Top News Portals</h1>
+    <div class="container">
+        {% for paper in newspapers %}
+        <div class="card">
+            <h2>{{ paper.name }}</h2>
+            <img src="{{ paper.image }}" alt="Preview Image" onerror="this.onerror=null;this.src='https://th.bing.com/th/id/OIP.R5_weenE-s75MDvWzWte2wHaCE?w=349&h=97&c=8&rs=1&qlt=90&r=0&o=6&dpr=1.3&pid=3.1&rm=2';">
+            <a class="read-btn" href="{{ url_for('show_articles', paper_id=paper.id) }}">Read More</a>
+        </div>
+        {% endfor %}
+        
+        <br>
+        <br>
+        
+    </div>
+    <div class="common">
+        <a href="{{ url_for('common_news') }}">
+            <button style="padding: 10px 20px; font-size: 16px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">
+                🗞️ View Common News Across Newspapers
+            </button>
+        </a>
+        
+    </div>
+
+    
+</body>
+</html> 

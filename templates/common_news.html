@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Common News</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            padding: 20px;
+        }
+        .group {
+            border: 1px solid #ddd;
+            margin-bottom: 30px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .article {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        .article img {
+            width: 200px;
+            height: auto;
+            border-radius: 5px;
+        }
+        .article-content {
+            flex: 1;
+        }
+        .article-content h3 {
+            margin: 0;
+        }
+        .source {
+            color: #777;
+            font-size: 0.9em;
+        }
+        a.read-more {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .back-home {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <a class="back-home" href="/">← Back to Home</a>
+    <h1>📰 Common News Articles Across 3 Newspapers</h1>
+
+    {% if groups %}
+        {% for group in groups %}
+            <div class="group">
+                <h2>Group {{ loop.index }}</h2>
+                {% for article in group %}
+                    <div class="article">
+                        {% if article.image %}
+                            <img src="{{ article.image }}" alt="Article Image">
+                        {% endif %}
+                        <div class="article-content">
+                            <h3>{{ article.title }}</h3>
+                            <p class="source">Source: {{ article.source }}</p>
+                            <p><strong>Summary:</strong> {{ article.summary }}</p>
+                            <p><strong>Text:</strong> {{ article.text[:500] }}...</p>
+                            <p><a href="{{ article.link }}" class="read-more" target="_blank">Read full article →</a></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No common articles found at the moment.</p>
+    {% endif %}
+</body>
+</html>
